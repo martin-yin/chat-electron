@@ -37,7 +37,9 @@ const currentPath = computed(() => {
   return router.currentRoute.value?.fullPath || '/home'
 })
 const handleClick = (path: string): void => {
-  router.push(path)
+  router.push({
+    path
+  })
 }
 </script>
 
@@ -45,8 +47,13 @@ const handleClick = (path: string): void => {
   <div class="layout">
     <div class="side">
       <div class="side-menu">
-        <div class="side-menu__item" v-for="(item, index) in sideMenu" :key="index"
-          :class="{ active: currentPath === item.path }" @click="handleClick(item.path)">
+        <div
+          class="side-menu__item"
+          v-for="(item, index) in sideMenu"
+          :key="index"
+          :class="{ active: currentPath === item.path }"
+          @click="handleClick(item.path)"
+        >
           <span>
             <component :is="item.icon" />
           </span>

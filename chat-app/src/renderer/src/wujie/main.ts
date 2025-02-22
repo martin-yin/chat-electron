@@ -1,18 +1,16 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createApp } from 'vue'
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/reset.css'
-import router from './router'
-
+import { createPinia } from 'pinia'
 import 'whatwg-fetch'
 import 'custom-event-polyfill'
 import WujieVue from 'wujie-vue3'
-import hostMap from '@renderer/wujie/hostMap'
-import credentialsFetch from '@renderer/wujie/fetch.js'
-import lifecycles from '@renderer/wujie/lifecycle.js'
-import App from './App.vue'
+import hostMap from './hostMap.js'
+import credentialsFetch from './fetch.js'
+import lifecycles from './lifecycle.js'
 
-const { setupApp, bus } = WujieVue
+import App from './App.vue'
+import router from './router'
+
+const { setupApp, preloadApp, bus } = WujieVue
 
 bus.$on('click', (msg) => window.alert(msg))
 
@@ -33,34 +31,32 @@ const degrade =
 const props = {
   jump: (name) => {
     router.push({ name })
-  }
+  },
 }
 const app = createApp(App)
 
 app.use(WujieVue)
-app.use(Antd)
+
+app.use(createPinia())
 app.use(router)
 
 const isProduction = import.meta.env.NODE_ENV === 'production'
 const attrs = isProduction ? { src: hostMap('//localhost:5173/') } : {}
 
 setupApp({
-  name: 'chat-link',
-  url: hostMap('chat-link'),
+  name: 'vue3',
+  url: hostMap('//localhost:5001/'),
   attrs,
   exec: true,
   alive: true,
   plugins: [],
   props,
-  fetch: (url, options) => {
-    console.log('fetch', url, options)
-    return url.includes(hostMap('chat-link'))
+  fetch: (url, options) =>
+    url.includes(hostMap('//localhost:5001/'))
       ? credentialsFetch(url, options)
-      : window.fetch(url, options)
-  },
-
+      : window.fetch(url, options),
   degrade,
-  ...lifecycles
+  ...lifecycles,
 })
 
 app.mount('#app')

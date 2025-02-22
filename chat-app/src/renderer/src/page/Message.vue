@@ -1,17 +1,35 @@
 <template>
-  <div class="content">
-    <iframe
-      src="http://localhost:3030/home?username=martin&password=diaosiwei00.*"
-      frameborder="0"
-      width="100%"
-      height="98%"
-    ></iframe>
-  </div>
+  <WujieVue
+    width="100%"
+    height="100%"
+    :props="{
+      token: 123,
+      link: 'http://localhost:3030/home'
+    }"
+    name="chatLink"
+    :url="chatLink"
+  ></WujieVue>
 </template>
-<script lang="ts" setup></script>
-<style lang="less" scoped>
-.content {
-  height: 100vh;
-  width: calc(100vw - 72px);
+
+<script>
+import hostMap from '../wujie/hostMap'
+import wujieVue from 'wujie-vue3'
+export default {
+  data() {
+    return {
+      token: localStorage.getItem('token'),
+      chatLink: `${hostMap('chat-link')}`
+    }
+  },
+  watch: {
+    '$route.params.path': {
+      handler: function () {
+        wujieVue.bus.$emit('chant-link-change', `/${this.$route.params.path}`)
+      },
+      immediate: true
+    }
+  }
 }
-</style>
+</script>
+
+<style lang="scss" scoped></style>
