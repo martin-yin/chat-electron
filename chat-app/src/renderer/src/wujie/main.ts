@@ -41,18 +41,18 @@ app.use(createPinia())
 app.use(router)
 
 const isProduction = import.meta.env.NODE_ENV === 'production'
-const attrs = isProduction ? { src: hostMap('//localhost:5173/') } : {}
+const attrs = isProduction ? { } : {}
 
 setupApp({
   name: 'vue3',
-  url: hostMap('//45.32.110.124:5001/'),
+  url: hostMap('chat-link'),
   attrs,
   exec: true,
   alive: true,
   plugins: [],
   props,
   fetch: (url, options) =>
-    url.includes(hostMap('//45.32.110.124:5001/'))
+    url.includes(hostMap('chat-link'))
       ? credentialsFetch(url, options)
       : window.fetch(url, options),
   degrade,
