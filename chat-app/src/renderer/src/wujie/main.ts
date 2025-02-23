@@ -52,7 +52,7 @@ setupApp({
   plugins: [],
   props,
   fetch: (url, options) =>
-    url.includes(hostMap('chat-link'))
+    url?.includes(hostMap('chat-link'))
       ? credentialsFetch(url, options)
       : window.fetch(url, options),
   degrade,

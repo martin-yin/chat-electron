@@ -20,7 +20,9 @@ app.use(
 
 app.use((req, res, next) => {
   // 定义允许的源列表
-  const allowedOrigins = ["http://localhost:5173", "http://45.32.110.124:3333"];
+  // 5000 是前端项目的端口
+  // 3333 是rock chat 端口
+  const allowedOrigins = ["http://45.32.110.124:5000", "http://45.32.110.124:3333"];
   const requestOrigin = req.headers.origin;
   if (allowedOrigins.includes(requestOrigin)) {
     res.set("Access-Control-Allow-Origin", requestOrigin);

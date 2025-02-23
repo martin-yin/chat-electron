@@ -1,0 +1,12 @@
+server {
+    listen 5000;
+    server_name 45.32.110.124;
+
+    root /home/lihx/chat-app;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+}
