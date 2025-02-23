@@ -19,7 +19,10 @@ const activeKey = ref('0')
 </script>
 <style lang="less" scoped>
 .login-container {
-  margin: 50px auto;
   width: 500px;
+  padding-top: 100px;
+  margin: 0 auto;
+  height: 100vh;
+  overflow: hidden;
 }
 </style>

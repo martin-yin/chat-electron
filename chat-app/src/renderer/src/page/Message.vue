@@ -1,14 +1,10 @@
 <template>
-  <WujieVue
-    width="100%"
-    height="100%"
-    :props="{
+  <div class="message">
+    <WujieVue width="100%" height="100%" :props="{
       token: token,
       link: roctChatIframe
-    }"
-    name="chatLink"
-    :url="chatLink"
-  ></WujieVue>
+    }" name="chatLink" :url="chatLink"></WujieVue>
+  </div>
 </template>
 
 <script>
@@ -33,4 +29,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.message {
+  height: 100vh;
+  overflow: hidden;
+}
+</style>
