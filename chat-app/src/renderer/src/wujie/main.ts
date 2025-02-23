@@ -45,14 +45,14 @@ const attrs = isProduction ? { src: hostMap('//localhost:5173/') } : {}
 
 setupApp({
   name: 'vue3',
-  url: hostMap('//localhost:5001/'),
+  url: hostMap('//45.32.110.124:5001/'),
   attrs,
   exec: true,
   alive: true,
   plugins: [],
   props,
   fetch: (url, options) =>
-    url.includes(hostMap('//localhost:5001/'))
+    url.includes(hostMap('//45.32.110.124:5001/'))
       ? credentialsFetch(url, options)
       : window.fetch(url, options),
   degrade,

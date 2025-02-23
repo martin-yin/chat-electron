@@ -5,7 +5,7 @@ const fs = require("fs");
 const session = require("express-session");
 const app = express();
 
-const requestUrl = "http://localhost:3000/api/v1";
+const requestUrl = "http://45.32.110.124:3333/api/v1";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ app.use(
 
 app.use((req, res, next) => {
   // 定义允许的源列表
-  const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
+  const allowedOrigins = ["http://localhost:5173", "http://45.32.110.124:3333"];
   const requestOrigin = req.headers.origin;
   if (allowedOrigins.includes(requestOrigin)) {
     res.set("Access-Control-Allow-Origin", requestOrigin);

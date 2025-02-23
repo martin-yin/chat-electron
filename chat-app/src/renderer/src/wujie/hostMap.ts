@@ -1,5 +1,5 @@
 const map = {
-  'chat-link': '//localhost:5001/'
+  'chat-link': '//45.32.110.124:5001/'
 }
 
 export default function hostMap(host: string): string {

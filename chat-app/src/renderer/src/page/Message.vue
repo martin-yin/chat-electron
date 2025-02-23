@@ -3,8 +3,8 @@
     width="100%"
     height="100%"
     :props="{
-      token: 123,
-      link: 'http://localhost:3030/home'
+      token: token,
+      link: roctChatIframe
     }"
     name="chatLink"
     :url="chatLink"
@@ -18,7 +18,8 @@ export default {
   data() {
     return {
       token: localStorage.getItem('token'),
-      chatLink: `${hostMap('chat-link')}`
+      chatLink: `${hostMap('chat-link')}`,
+      roctChatIframe: 'http://45.32.110.124:3030/home'
     }
   },
   watch: {
