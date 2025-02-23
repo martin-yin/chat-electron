@@ -49,7 +49,7 @@ export const request = <T>(
   data = {},
   config?: AxiosRequestConfig
 ): Promise<Response<T>> => {
-  const prefix = 'http://45.32.110.124:3030/'
+  const prefix = 'http://45.32.110.124:3030'
 
   url = prefix + url
   if (method === 'post') {
